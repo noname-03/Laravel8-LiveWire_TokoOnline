@@ -1,7 +1,17 @@
-<div>
-    {{-- Because she competes with no one, no one can compete with her. --}}
-    {{-- <h1>hai</h1> --}}
-    <button wire:click="increment">+</button>
-    <h1>{{ $count }}</h1>
-    <button wire:click="decrement">-</button>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">Counter</div>
+
+                <div class="card-body">
+                    <div class="col-6">
+                        <button wire:click="increment">+</button>
+                        <h1>{{ $count }}</h1>
+                        <button wire:click="decrement">-</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
