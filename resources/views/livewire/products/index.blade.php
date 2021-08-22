@@ -15,7 +15,11 @@
                                 <option value="20">20</option>
                             </select>
                         </div>
+                        <div class="col">
+                            <input wire:model="search" type="text" class="form-control form-control-sm" placeholder="Search">
+                        </div>
                     </div>
+
                     <br>
                     <table class="table">
                         <thead class="thead-dark">
@@ -31,7 +35,7 @@
                             @php
                                 $no = 0 ;
                             @endphp
-                            @foreach ($tes as $data)
+                            @foreach ($products as $data)
                             @php
                                 $no++
                             @endphp
@@ -48,7 +52,7 @@
                             @endforeach
                         </tbody>
                       </table>
-                      {{ $tes->links() }}
+                      {{ $products->links() }}
                 </div>
             </div>
         </div>

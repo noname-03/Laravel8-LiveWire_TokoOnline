@@ -12,13 +12,25 @@ class Index extends Component
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
     public $paginate = 10;
+    public $search;
+    // protected $updatesQueryString = [
+    //   ['search']
+    // ];
+
+    public function mount()
+    {
+        $this->search = request()->query('search', $this->search);
+    }
 
     public function render()
     {
         // protected $paginationTheme = 'bootstrap';
-        $tes = Product::orderBy('id', 'DESC')->paginate($this->paginate);
+        // $product = Product::latest()->paginate($this->paginate);//ini adalah awal
+        $product =  $this->search === null ?
+                    Product::latest()->paginate($this->paginate) :
+                    Product::latest()->where('title', 'like', '%' . $this->search . '%')->paginate($this->paginate);
         return view('livewire.products.index', [
-            'tes' => $tes,
+            'products' => $product,
         ])->extends('layouts.app');
     }
 
