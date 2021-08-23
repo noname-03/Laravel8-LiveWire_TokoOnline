@@ -19,7 +19,8 @@ class Index extends Component
     // ];
 
     protected $listeners = [
-        'formClose' => 'formCloseHandler'
+        'formClose' => 'formCloseHandler',
+        'productStore' => 'productStoreHandler'
     ];
 
 
@@ -43,6 +44,12 @@ class Index extends Component
     public function formCloseHandler()
     {
         $this->formVisible = false;
+    }
+    public function productStoreHandler()
+    {
+        $this->formVisible = false;// refresh halaman setelah submit
+        session()->flash('message', 'Your Product Was Stored');
+
     }
 
 }
