@@ -13,9 +13,15 @@ class Index extends Component
     protected $paginationTheme = 'bootstrap';
     public $paginate = 10;
     public $search;
+    public $formVisible; // show form with wrie:click
     // protected $updatesQueryString = [
     //   ['search']
     // ];
+
+    protected $listeners = [
+        'formClose' => 'formCloseHandler'
+    ];
+
 
     public function mount()
     {
@@ -32,6 +38,11 @@ class Index extends Component
         return view('livewire.products.index', [
             'products' => $product,
         ])->extends('layouts.app');
+    }
+
+    public function formCloseHandler()
+    {
+        $this->formVisible = false;
     }
 
 }
