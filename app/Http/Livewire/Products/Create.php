@@ -29,7 +29,7 @@ class Create extends Component
         ]);
 
         //validasi untuk nama foto yang akan digunakan
-        $imagename = '';
+        $imageName = '';
         if ($this->image) {
             $imageName = \Str::slug($this->title, '-')
                 . '-'
@@ -37,18 +37,33 @@ class Create extends Component
                 . '.' . $this->image->getClientOriginalExtension();
 
             $this->image->storeAs('public', $imageName, 'local');
-            //nama diambil dari slug yaitu dari title yang dipisah dengan "-" dan "-" lalau unikid random dan mengambil extention dari orginal foto
-
         }
 
-        $products = [
+        Product::create([
             'title' => $this->title,
-            'description' => $this->description,
             'price' => $this->price,
-            'image' => $this->image
-        ];
+            'description' => $this->description,
+            'image' => $imageName
+        ]);
+        // if ($this->image) {
+        //     $imageName = \Str::slug($this->title, '-')
+        //         . '-'
+        //         . uniqid()
+        //         . '.' . $this->image->getClientOriginalExtension();
+
+        //     $this->image->storeAs('public', $imageName, 'local');
+        //     //nama diambil dari slug yaitu dari title yang dipisah dengan "-" dan "-" lalau unikid random dan mengambil extention dari orginal foto
+
+        // }
+
+        // $products = [
+        //     'title' => $this->title,
+        //     'description' => $this->description,
+        //     'price' => $this->price,
+        //     'image' => $this->$imageName
+        // ];
         // dd($products);
-        Product::create($products);
+        // Product::create($products);
         $this->emit('productStore');
     }
 }

@@ -2,7 +2,12 @@
 <div class="container">
 
     @if ($formVisible)
-        @livewire('products.create')
+        @if (! $formUpdate)
+        {{-- jika form update bukan true --}}
+            @livewire('products.create')
+        @else
+            @livewire('products.update')
+        @endif
     @endif
 
     <div class="row justify-content-center">
@@ -60,7 +65,7 @@
                                 {{-- <td>{{$data->description}}</td> --}}
                                 <td>@currency($data->price)</td>
                                 <td>
-                                    <button class="btn btn-sm btn-info text-white">Edit</button>
+                                    <button wire:click="editProduct({{ $data->id }})" class="btn btn-sm btn-info text-white">Edit</button>
                                     <button class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>

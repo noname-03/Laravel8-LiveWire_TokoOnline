@@ -17,10 +17,12 @@ class Index extends Component
     // protected $updatesQueryString = [
     //   ['search']
     // ];
+    public $formUpdate = false;
 
     protected $listeners = [
         'formClose' => 'formCloseHandler',
-        'productStore' => 'productStoreHandler'
+        'productStore' => 'productStoreHandler',
+        'productUpdated' => 'productUpdatedHendler'
     ];
 
 
@@ -52,4 +54,17 @@ class Index extends Component
 
     }
 
+    public function editProduct($productId)
+    {
+        $this->formUpdate = true;
+        $this->formVisible = true;
+        $product = Product::find($productId);
+        $this->emit('edit.product', $product);//mnengirim data dari component index ke component update livewire
+    }
+
+    public function productUpdatedHendler()
+    {
+        $this->formVisible = false;
+        session()->flash('message', 'Your Product Was Updated');
+    }
 }
