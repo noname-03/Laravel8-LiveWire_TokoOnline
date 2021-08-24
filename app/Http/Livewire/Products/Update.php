@@ -45,9 +45,9 @@ class Update extends Component
         ]);
 
         if ($this->productId) {
-            $product = Product::find($this->productId);//mencari data
+            $product = Product::find($this->productId);
 
-            $image = ''; //untuk menghilangkan erer maka kita harus membuat varibale baru
+            $image = '';
             if ($this->image) { //jika ada data baru maka akan memproses ini
                 Storage::disk('public')->delete($product->image);
                 $imageName = \Str::slug($this->title, '-')

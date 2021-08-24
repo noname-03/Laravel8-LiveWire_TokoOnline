@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use \App\Http\Livewire\Products\Index;
 use App\Http\Livewire\Counter;
 use Illuminate\Routing\RouteGroup;
 
@@ -27,6 +26,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Route::livewire('/admin/product', 'product.index');
 Route::middleware(['auth'])->group(function () {
-    route::get('/admin/products', Index::class)->name('products');
+    route::get('/admin/products',\App\Http\Livewire\Products\Index::class)->name('products');
     route::get('/admin/counter', Counter::class)->name('counter');
 });
+route::get('shop',\App\Http\Livewire\Shop\Index::class)->name('shop');

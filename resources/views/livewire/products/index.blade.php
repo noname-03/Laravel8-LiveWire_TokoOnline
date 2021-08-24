@@ -66,7 +66,7 @@
                                 <td>@currency($data->price)</td>
                                 <td>
                                     <button wire:click="editProduct({{ $data->id }})" class="btn btn-sm btn-info text-white">Edit</button>
-                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                    <button wire:click="deleteProduct( {{$data->id}} )" onclick="return confirm('apakah anda mau menghapus data ini ?')" class="btn btn-sm btn-danger">Delete</button>
                                 </td>
                             </tr>
                             @endforeach
